@@ -1,0 +1,21 @@
+.products{
+    padding: 50px;
+}
+
+article{
+    display:inline-block;
+    width: 100px;
+    height: 120px;
+    background: #fff;
+    margin: 15px;
+}
+
+article img{
+    width: 100%;
+}
+
+article:hover{
+    background: rgba(0,0,0,0.5);
+    transform: scale(1.005);
+    transition: 0.5s;
+}

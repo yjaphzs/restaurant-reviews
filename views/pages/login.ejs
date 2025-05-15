@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
+<script type='text/javascript'>
+    if(sessionStorage.getItem("name") != null){
+        window.location = "/";
+    }
+</script>
+<body class="text-center">
+    <img src="images/back.jpg" style="position:fixed; top: -200px; left:0;width: 100%;">
+    <div class="container-fluid col-3" style="margin-top: 80px; background: rgba(255,255,255,0.9); padding-left: 50px;padding-right: 50px; padding-top:20px;padding-bottom:20px; width: 600px;">
+    <form class="form-signin" id="loginForm">
+        <img class="mb-4" src="images/logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <br>
+        <a class="btn btn-link" href="/register">Don't have account? Register</a>
+        <p class="mt-5 mb-3 text-muted">© 2018</p>
+    </form>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="../controller/loginController.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
+<script>
+    if(sessionStorage.getItem("name") == null){
+        window.location = "/login";
+    }
+</script>
+<body id="body">
+    <% include partials/menu %>
+
+    <div class="container-fluid">
+        <div id="left" class="col-5" style="height: 1230px; width: 440px; background: #fff; float:left; z-index: -1;">
+            <ul class="navbar-nav" style="display: block;">
+                <li class="nav-item" id="macdo" style="position:relative; width: 200px; border-left: 5px solid #cd2323; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/mcdo_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Mcdonalds</h3>
+                </li>
+                <li class="nav-item" id="jollibee" style="position:relative; width: 200px; border-left: 5px solid #cd2323; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/jbee_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Jollibee</h3>
+                </li>
+                <li class="nav-item" id="chowking" style="position:relative; width: 200px; border-left: 5px solid #cd2323; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/ck_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Chowking</h3>
+                </li>
+                <li class="nav-item" id="greenwich" style="position:relative; width: 200px; border-left: 5px solid #116511; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/gw_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Greenwich</h3>
+                </li>
+                <li class="nav-item" id="shakeys" style="position:relative; width: 200px; border-left: 5px solid #cd2323; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/sk_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Shakeys</h3>
+                </li>
+                <li class="nav-item" id="chingu" style="position:relative; width: 200px; border-left: 5px solid #ca0539; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/cg_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Chingu</h3>
+                </li>
+                <li class="nav-item" id="marquez" style="position:relative; width: 200px; border-left: 5px solid #cc740c; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/mq_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Marquez</h3>
+                </li>
+                <li class="nav-item" id="miapots" style="position:relative; width: 200px; border-left: 5px solid #f0ca2b; margin-bottom: 5px; cursor:pointer;">
+                    <img src="images/mp_list.jpg">
+                    <h3 style="position: absolute; left: 0; bottom: -7px; text-align:right; color: #fff; background: rgba(0,0,0,0.5); width: 205%; height: 50px; padding-right: 20px; padding-top: 5px;">Miapots</h3>
+                </li>
+            </ul>
+        </div>
+        <div style="float:right; background: #fff; height: 1230px; width: 860px; padding: 20px;">
+            <div class="text-left">
+                <h3 id="title">Loading...</h3>
+                <div style="font-size: 14px;">
+                    Location: <label id="location"><span class="fa fa-map-marker text-danger"></span>Loading... <br></label><br>
+                    Ratings:
+                    <ul style="display: inline-block; margin-left: -33px;">
+                        <div id="stars">
+                            <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+                        </div>
+                    </ul>
+                </div>
+                    <button class="btn btn-primary" id="addReview" style="position:absolute; right:20px; top: 180px; z-index: 0;">Add Review</button>
+                    <button class="btn btn-primary" id="editReview" style="position:absolute; right:20px; top: 180px; z-index: 0;">Edit Review</button>
+                    <h6>Reviews</h6>
+                    <hr>
+                    <div style="height: 700px; overflow-y: auto;">
+                    <ul id="reviews" class="navbar-nav" style="padding-left: 20px; padding-right: 20px; padding-top:0px; font-size: 12px;">
+
+                    </ul>
+                    </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <!-- Add review -->
+    <div class="modal fade" id="review" tabindex="-1" role="dialog" aria-labelledby="payment" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="height: 400px;">
+                <form id="reviewForm">
+                    <div id="account_profile" style="text-align:center;">
+
+                    </div>
+                    <div style="width: 100%; position:absolute;top: 120px;">
+                        Rating:
+                        <span id="1_star" class="fa fa-star"></span>
+                        <span id="2_star" class="fa fa-star"></span>
+                        <span id="3_star" class="fa fa-star"></span>
+                        <span id="4_star" class="fa fa-star"></span>
+                        <span id="5_star" class="fa fa-star"></span>
+                        <br>
+                        <div style="text-align: center; width: 45%;">
+                            <small id="reaction"></small>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="position:absolute; width: 93%; top: 170px;">
+                        Title
+                        <input type="text" name="review_title" class="form-control" required>
+                        Comment
+                        <textarea class="form-control" name="review_comment" style="resize: none; height: 100px;" required></textarea>
+                    </div>
+
+                  </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Review</button>
+              </div>
+            </form>
+            </div>
+          </div>
+    </div>
+    <!-- Edit review -->
+    <div class="modal fade" id="e_review" tabindex="-1" role="dialog" aria-labelledby="payment" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="height: 400px;">
+                <form id="e_reviewForm">
+                    <div id="e_account_profile" style="text-align:center;">
+
+                    </div>
+                    <div style="width: 100%; position:absolute;top: 120px;">
+                        <div id="r_stars">
+                        </div>
+                        <div style="text-align: center; width: 45%;">
+                            <small id="ereaction"></small>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="position:absolute; width: 93%; top: 170px;">
+                        Title
+                        <input type="text" name="e_review_title" class="form-control" required>
+                        Comment
+                        <textarea class="form-control" name="e_review_comment" style="resize: none; height: 100px;" required></textarea>
+                    </div>
+
+                  </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Review</button>
+              </div>
+            </form>
+            </div>
+          </div>
+    </div>
+    <script src="./controller/restaurantController.js"></script>
+</body>
+</html>

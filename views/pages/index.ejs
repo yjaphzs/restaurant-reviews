@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
+<script>
+    if(sessionStorage.getItem("name") == null){
+        window.location = "/login";
+    }
+</script>
+<body ng-app="myApp" id="mainController" ng-controller="mainController">
+    <% include partials/menu %>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+        #map {
+            position: fixed;
+            width: 100%;
+            height: 91%;
+            top: 57px;
+            z-index: -1;
+        }
+        #in{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding-right: 10px;
+            padding-left: 10px;
+            z-index: 9000;
+            background-color: #69D2E7;
+            cursor:pointer;
+        }
+        #out{
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            padding-right: 5px;
+            padding-left: 10px;
+            z-index: 9000;
+            background-color: #A7DBDB;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div>
+                <img src="{{ image }}" style="height: 200px;">
+            </div>
+            <center><h4>{{ name }}</h4>
+            <div class="col-8" style="font-size: 14px;"><span class="fa fa-map-marker text-danger"></span> {{ dir}} </div>
+            <hr>
+            <label style="margin: 0px; margin-left: -120px;">
+                <small>Previous Reviews</small>
+                <ul id="stars" style="display: inline-block;">
+                    <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+                </ul>
+            </label>
+            <div style="height: 200px; overflow-y: auto;">
+            <ul class="navbar-nav" id="reviews" style="padding-left: 20px; padding-right: 20px; padding-top:0px; font-size: 12px;">
+
+            </ul>
+            </div>
+        </center>
+        </div>
+    </div>
+
+    <div id="map">
+
+    </div>
+    <script src="../controller/indexController.js"></script>
+</body>
+</html>

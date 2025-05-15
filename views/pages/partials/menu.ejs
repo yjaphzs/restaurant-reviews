@@ -1,0 +1,57 @@
+
+<nav class="navbar navbar-expand-lg" style="z-index: 10;">
+   <div style="width: 100%; background: #fff; box-shadow: 0 7px 12px -4px #CFCACA;position:fixed; top: 0; left: 0px; height: 50px;">
+   <a class="navbar-brand" style="margin-left: 30px; margin-top: 5px;"><img src="images/logo.png" style="width: 45px; position:fixed; top: 3px;"><label style="position:fixed; left: 90px;"><b>Food Reviews</b></label></a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="position: fixed; top: 8px; left: 250px;">
+   <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Map</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/restaurants">Restaurants</a>
+      </li>
+    </ul>
+    </div>
+    <div class="row">
+      <div style="position: fixed; top:5px; left: 850px;">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="padding-left: 20px; border-radius: 40px;" id="search">
+            <div class="input-group-addon" style="margin-left: -36px; margin-top: 4px;z-index: 3; background-color: transparent; border:none;">
+              <button class="btn btn-warning btn-sm" style="border-radius: 20px; height: 30px;background: #f4991a;" id="search-btn" onclick=""><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="btn-group" style="position:fixed; right: 20px; top: 7px;">
+    <button type="button" id="account_name" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split tex-dark" style="border-radius: 20px; font-size: 14px; padding-right: 35px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+    </button>
+    <div class="dropdown-menu" style="position:fixed; left: 1150px; top: 50px; box-shadow: 2px 2px 2px #c2c2c2; width: 200px; ">
+      <h6 class="dropdown-header">Account</h6>
+      <small style="margin-left: 20px;" id="account_email"></small>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" onclick="logout()" style="cursor: pointer;">Logout</a>
+    </div>
+  </div>
+</nav>
+<script>
+function logout(){
+    swal({
+      title: "Logout",
+      text: "Are you sure? Unsaved data will be lost.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((toLogout) => {
+        if (toLogout) {
+            sessionStorage.clear();
+            window.location = "/login";
+        }
+    });
+
+}
+document.getElementById("account_name").innerHTML = '<span class="fa fa-user" style="margin-right: 5px;"></span>'+sessionStorage.getItem("name");
+document.getElementById("account_email").innerHTML += '<span class="fa fa-user" style="margin-right: 10px;"></span>'+sessionStorage.getItem("email");
+</script>
