@@ -75,3 +75,12 @@ The application uses **Leaflet.js** to render a map view of restaurants. All res
 4. Run application
    ```bash
    node app
+
+---
+
+## 📸 Screenshots
+![Page3 - ITSD](https://github.com/user-attachments/assets/36638965-bfd6-4bba-a58c-11b64bd0e07b)
+
+![Page3 - ITSD - Web](https://github.com/user-attachments/assets/02657ba5-5a18-47fe-88aa-aca146d11d33)
+
+![Page3 - ITSD - Tools](https://github.com/user-attachments/assets/b07a77eb-46e4-4c38-91d7-ffd2b1073b1a)
